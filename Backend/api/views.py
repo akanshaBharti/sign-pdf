@@ -1,6 +1,7 @@
 import json
 from io import BytesIO
 
+from django.conf import settings
 from django.http import FileResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
@@ -13,7 +14,7 @@ def health(request):
     return JsonResponse(
         {
             "message": "Sign PDF backend is running.",
-            "frontend": "http://localhost:5173/",
+            "frontend": settings.FRONTEND_URL,
             "sign_endpoint": "/api/sign-pdf/",
         }
     )
@@ -41,7 +42,8 @@ def sign_pdf(request):
     try:
         output = apply_signatures(pdf_file, signature_file, placements)
     except Exception as exc:
-        return JsonResponse({"error": f"Unable to sign PDF: {exc}"}, status=400)
+        message = f"Unable to sign PDF: {exc}" if settings.DEBUG else "Unable to sign PDF."
+        return JsonResponse({"error": message}, status=400)
 
     filename = f"signed-{pdf_file.name}"
     return FileResponse(output, as_attachment=True, filename=filename, content_type="application/pdf")

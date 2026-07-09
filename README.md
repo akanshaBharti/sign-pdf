@@ -8,8 +8,22 @@ Full-stack PDF signing app with a React + Tailwind frontend and Django backend.
 cd Backend
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
+cp .env.example .env
 .venv/bin/python manage.py runserver 8000
 ```
+
+Set real values in `Backend/.env` for local development or deployment. At minimum, production should use:
+
+```bash
+DJANGO_DEBUG=false
+DJANGO_SECRET_KEY=<long-random-secret>
+DJANGO_ALLOWED_HOSTS=your-api-domain.com
+FRONTEND_URL=https://your-frontend-domain.com
+DJANGO_CORS_ALLOWED_ORIGINS=https://your-frontend-domain.com
+DJANGO_CSRF_TRUSTED_ORIGINS=https://your-frontend-domain.com
+```
+
+Never commit `Backend/.env`; use `Backend/.env.example` as the public template.
 
 ## Run Frontend
 
