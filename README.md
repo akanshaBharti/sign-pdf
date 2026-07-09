@@ -34,3 +34,9 @@ npm run dev
 ```
 
 The frontend defaults to `http://localhost:5173` and sends signing requests to `http://localhost:8000/api/sign-pdf/`.
+
+<img width="1468" height="831" alt="image" src="https://github.com/user-attachments/assets/33633dbe-92e3-4a8d-9c2a-740ad54009c7" />
+
+<img width="1470" height="830" alt="image" src="https://github.com/user-attachments/assets/25b966a9-fd6f-4983-833f-6a51e7a58495" />
+
+
