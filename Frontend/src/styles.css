@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,7 +19,7 @@ body {
   background: #f5f7fb;
   color: #172033;
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "DM Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
 }
 
@@ -48,4 +50,86 @@ input {
   to {
     transform: translateX(0);
   }
+}
+
+:root {
+  --paper: #fffaf2;
+  --canvas: #f4e8d8;
+  --ink: #25162f;
+  --muted: #776b77;
+  --plum: #6b2a6a;
+  --lilac: #dfc8f1;
+  --green: #137853;
+  --line: #d9c8bc;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: "DM Sans", "Avenir Next", "Trebuchet MS", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+}
+
+.sign-pdf-app { background: var(--canvas) !important; }
+.sign-header { min-height: 76px !important; padding: 14px 28px !important; background: var(--paper) !important; border-bottom-color: var(--plum) !important; }
+.brand-mark { border: 2px solid var(--ink); border-radius: 11px !important; box-shadow: 3px 3px 0 var(--plum); transform: rotate(-2deg); }
+.sign-header h1 { font-size: 25px !important; letter-spacing: -.04em; font-style: italic; }
+.brand-subtitle { color: var(--muted) !important; }
+.signature-submit-button { min-height: 43px; border: 2px solid var(--ink); border-radius: 12px !important; background: var(--green) !important; box-shadow: 4px 4px 0 var(--plum); transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease; }
+.signature-submit-button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 6px 6px 0 var(--plum); background: #0f6847 !important; }
+.signature-submit-button, .signature-submit-button:disabled { border-color: #c9c1bf; color: #fff !important; }
+.button-sparkle { transition: transform 220ms ease; }
+.signature-submit-button:hover:not(:disabled) .button-sparkle { transform: rotate(22deg) scale(1.15); }
+
+.command-toolbar { min-height: 63px; padding: 9px 28px !important; background: var(--paper) !important; border-bottom-color: var(--line) !important; }
+.toolbar-label { color: var(--ink) !important; letter-spacing: .03em; }
+.document-search { border-color: var(--line) !important; background: #fffdf8 !important; }
+.document-search:focus { border-color: var(--plum) !important; box-shadow: 0 0 0 3px rgba(223, 200, 241, .55) !important; }
+
+.pages-overview { padding: 28px 16px !important; background: var(--paper) !important; border-color: var(--line) !important; }
+.pages-title { color: var(--ink) !important; font-weight: 900 !important; }
+.page-thumb-item { border-color: var(--line) !important; background: #fffdf8 !important; transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+.page-thumb-item:hover, .page-thumb--active { transform: translateX(3px); border-color: var(--plum) !important; box-shadow: 4px 4px 0 var(--lilac) !important; }
+.page-thumb--active { outline: 2px solid var(--plum); outline-offset: 2px; }
+
+.document-stage { background: var(--canvas) !important; padding: 26px 34px 48px !important; }
+.upload-zone { border-color: var(--plum) !important; background: var(--paper) !important; box-shadow: 8px 8px 0 rgba(107, 42, 106, .13) !important; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+.upload-zone:hover { transform: translateY(-4px); box-shadow: 11px 11px 0 rgba(107, 42, 106, .18) !important; border-color: var(--green) !important; }
+.upload-icon-wrap { display: grid; place-items: center; width: 64px; height: 64px; border: 1px solid var(--plum); border-radius: 50%; animation: uploadFloat 2.6s ease-in-out infinite; }
+.upload-icon { color: var(--green) !important; }
+.upload-hint { color: var(--plum); font-size: 11px; font-weight: 500; letter-spacing: .05em; }
+.pdf-sheet { border-radius: 2px !important; box-shadow: 8px 8px 0 rgba(107, 42, 106, .12), 0 20px 48px rgba(64, 34, 49, .13) !important; }
+.signature-placement { border-color: var(--plum) !important; background: rgba(223, 200, 241, .48) !important; animation: signaturePulse 2.2s ease-in-out infinite; }
+
+.signature-panel { padding: 30px 28px !important; background: var(--paper) !important; border-color: var(--line) !important; }
+.workflow-head { margin-bottom: 26px; }
+.step-badge { display: inline-flex; padding: 8px 13px; border-radius: 20px; background: var(--lilac); color: var(--plum); font-size: 13px; font-weight: 700; }
+.workflow-progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 25px; }
+.workflow-step { position: relative; z-index: 0; display: grid; justify-items: center; gap: 8px; color: var(--muted); font-size: 12px; font-weight: 500; text-align: center; }
+.workflow-step::before { content: ""; position: absolute; top: 14px; right: 58%; width: 84%; border-top: 2px solid var(--line); z-index: -1; }
+.workflow-step:first-child::before { display: none; }
+.step-dot { display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); font-weight: 600; }
+.workflow-step.is-current { color: var(--ink); font-weight: 600; }
+.workflow-step.is-current .step-dot { border-color: var(--plum); background: var(--lilac); color: var(--plum); animation: signaturePulse 2.2s ease-in-out infinite; }
+.workflow-step.is-complete .step-dot { border-color: var(--green); background: var(--green); color: white; }
+.workflow-step.is-complete::before { border-color: var(--green); }
+.signature-title { margin-bottom: 9px; font-size: 31px !important; letter-spacing: -.05em; font-style: italic; }
+.signature-copy { margin: 0; color: #514352; font-size: 14px; line-height: 1.55; }
+.upload-pdf-button, .signature-upload-drop, .signature-preview { border-color: var(--line) !important; background: #fffdf8 !important; }
+.upload-pdf-button:hover, .signature-upload-drop:hover, .signature-preview:hover { border-color: var(--plum) !important; }
+.signature-upload-icon { color: var(--green) !important; }
+.signature-preview { animation: panelIn 330ms ease both; }
+.placement-status { background: #e6f4eb !important; color: var(--green) !important; }
+
+@keyframes uploadFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-5px) rotate(3deg); } }
+@keyframes signaturePulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(107, 42, 106, .18); } 50% { box-shadow: 0 0 0 8px rgba(107, 42, 106, 0); } }
+@keyframes panelIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1023px) {
+  .sign-header, .command-toolbar { padding-inline: 18px !important; }
+  .document-stage { padding: 22px 16px 42px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

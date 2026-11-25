@@ -16,3 +16,4 @@ Backend/*.pyc
 Backend/**/*.pyc
 Backend/staticfiles/
 Backend/media/
+Backend/.idea/

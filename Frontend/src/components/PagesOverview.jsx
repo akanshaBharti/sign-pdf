@@ -4,7 +4,7 @@ import { EmptyPanel } from "./EmptyPanel";
 
 export function PagesOverview({
   activePage,
-  className = "flex min-h-0 flex-col border-b border-slate-200 bg-white px-3 pb-3 pt-4 lg:border-b-0 lg:border-r",
+  className = "pages-overview flex min-h-0 flex-col border-b border-slate-200 bg-white px-3 pb-3 pt-4 lg:border-b-0 lg:border-r",
   itemClassName = "w-32 shrink-0 rounded border p-2 text-left transition lg:w-full",
   listClassName = "flex min-h-0 flex-1 gap-3 overflow-x-auto overflow-y-hidden pb-1 lg:block lg:space-y-3 lg:overflow-y-auto lg:overflow-x-hidden lg:pb-0 lg:pr-1",
   onClose,
@@ -16,7 +16,7 @@ export function PagesOverview({
   return (
     <aside className={className}>
       <div className="mb-3 flex shrink-0 items-center justify-between lg:mb-4">
-        <h2 className="text-sm font-semibold text-slate-800">Pages Overview</h2>
+        <h2 className="pages-title text-sm font-semibold text-slate-800">Pages</h2>
         <div className="flex items-center gap-2">
           <span className="text-xs text-slate-500">{pages.length || 0}</span>
           {onClose ? (
@@ -40,9 +40,9 @@ export function PagesOverview({
               onClick={() => {
                 onPageSelect(page.pageNumber);
               }}
-              className={`${itemClassName} ${
+              className={`page-thumb-item ${itemClassName} ${
                 activePage === page.pageNumber
-                  ? "border-emerald-500 bg-emerald-50 shadow-sm"
+                  ? "page-thumb--active border-emerald-500 bg-emerald-50 shadow-sm"
                   : "border-slate-200 bg-white hover:border-slate-300"
               }`}
             >

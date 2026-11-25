@@ -264,7 +264,7 @@ function App() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col overflow-x-hidden bg-slate-100 pb-20 lg:h-screen lg:overflow-hidden lg:pb-0">
+    <main className="sign-pdf-app flex min-h-screen flex-col overflow-x-hidden bg-slate-100 pb-20 lg:h-screen lg:overflow-hidden lg:pb-0">
       <AppHeader placement={placement} status={status} onSign={signPdf} />
 
       <Toolbar
@@ -316,6 +316,7 @@ function App() {
             error={error}
             handlePdfUpload={handlePdfUpload}
             handleSignatureUpload={handleSignatureUpload}
+            pdfFile={pdfFile}
             placement={placement}
             setDragging={setDragging}
             setSignatureFile={setSignatureFile}
@@ -359,6 +360,7 @@ function App() {
               handlePdfUpload={handlePdfUpload}
               handleSignatureUpload={handleSignatureUpload}
               onClose={() => setMobilePanel(null)}
+              pdfFile={pdfFile}
               placement={placement}
               setDragging={setDragging}
               setSignatureFile={setSignatureFile}

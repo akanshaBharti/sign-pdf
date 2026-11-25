@@ -7,6 +7,7 @@ export function SignaturePanel({
   handlePdfUpload,
   handleSignatureUpload,
   onClose,
+  pdfFile,
   placement,
   setDragging,
   setSignatureFile,
@@ -14,10 +15,27 @@ export function SignaturePanel({
   signatureUrl,
   status
 }) {
+  const currentStep = placement ? 3 : signatureUrl ? 2 : pdfFile ? 2 : 1;
+
   return (
-    <aside className={className}>
+    <aside className={`signature-panel ${className}`}>
+      <div className="workflow-head">
+        <span className="step-badge">Step {currentStep} of 3</span>
+        <div className="workflow-progress" aria-label="Signing progress">
+          {[[1, "Upload"], [2, "Signature"], [3, "Download"]].map(([step, label]) => (
+            <div key={step} className={`workflow-step ${step < currentStep ? "is-complete" : ""} ${step === currentStep ? "is-current" : ""}`}>
+              <span className="step-dot">{step < currentStep ? "✓" : step}</span>
+              <span>{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="mb-5 flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-slate-800">Signature</h2>
+        <div>
+          <h2 className="signature-title text-sm font-semibold text-slate-800">Signature</h2>
+          <p className="signature-copy">Place your signature on the document, then continue to download.</p>
+        </div>
         <div className="flex items-center gap-2">
           {signatureFile ? (
             <button
@@ -38,14 +56,14 @@ export function SignaturePanel({
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-1">
-        <label className="flex h-10 cursor-pointer items-center justify-center gap-2 rounded border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700 transition hover:border-emerald-500 hover:bg-emerald-50">
+          <label className="upload-pdf-button flex h-10 cursor-pointer items-center justify-center gap-2 rounded border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700 transition hover:border-emerald-500 hover:bg-emerald-50">
           <FileText size={16} />
           Upload new PDF
           <input className="hidden" type="file" accept="application/pdf" onChange={handlePdfUpload} />
         </label>
 
-        <label className="flex cursor-pointer flex-col items-center justify-center rounded border border-dashed border-slate-300 px-4 py-7 text-center transition hover:border-emerald-500">
-          <Upload className="mb-3 text-slate-500" size={28} />
+        <label className="signature-upload-drop flex cursor-pointer flex-col items-center justify-center rounded border border-dashed border-slate-300 px-4 py-7 text-center transition hover:border-emerald-500">
+          <Upload className="mb-3 signature-upload-icon text-slate-500" size={28} />
           <span className="text-sm font-semibold text-slate-900">Upload signature</span>
           <span className="mt-1 text-xs text-slate-500">PNG, JPG, or WEBP</span>
           <input className="hidden" type="file" accept="image/*" onChange={handleSignatureUpload} />
@@ -63,7 +81,7 @@ export function SignaturePanel({
             onDragEnd={() => {
               setDragging(false);
             }}
-            className="flex h-24 cursor-grab items-center justify-center rounded border border-slate-200 bg-slate-50 p-3 active:cursor-grabbing"
+            className="signature-preview flex h-24 cursor-grab items-center justify-center rounded border border-slate-200 bg-slate-50 p-3 active:cursor-grabbing"
           >
             <img src={signatureUrl} alt="Uploaded signature" className="max-h-full max-w-full object-contain" />
           </div>
@@ -75,7 +93,7 @@ export function SignaturePanel({
       ) : null}
 
       <div className="mt-6 space-y-2 text-sm">
-        {placement ? <div className="rounded bg-emerald-50 p-3 text-emerald-800">Placed on page {placement.page}</div> : null}
+        {placement ? <div className="placement-status rounded bg-emerald-50 p-3 text-emerald-800">Placed on page {placement.page}</div> : null}
         {status ? <div className="rounded bg-slate-50 p-3 text-slate-700">{status}</div> : null}
         {error ? <div className="rounded bg-red-50 p-3 text-red-700">{error}</div> : null}
       </div>

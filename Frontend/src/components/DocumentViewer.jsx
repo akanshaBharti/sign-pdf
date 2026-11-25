@@ -17,12 +17,13 @@ export function DocumentViewer({
   signatureUrl
 }) {
   return (
-    <section ref={documentScrollRef} className="min-w-0 overflow-auto bg-slate-100 p-3 sm:p-4 lg:p-6">
+    <section ref={documentScrollRef} className="document-stage min-w-0 overflow-auto bg-slate-100 p-3 sm:p-4 lg:p-6">
       {!pdfFile ? (
-        <label className="mx-auto mt-6 flex max-w-2xl cursor-pointer flex-col items-center justify-center rounded border-2 border-dashed border-slate-300 bg-white px-6 py-12 text-center shadow-panel transition hover:border-emerald-500 sm:mt-16 sm:py-16">
-          <Upload className="mb-4 text-slate-500" size={34} />
+        <label className="upload-zone mx-auto mt-6 flex max-w-2xl cursor-pointer flex-col items-center justify-center rounded border-2 border-dashed border-slate-300 bg-white px-6 py-12 text-center shadow-panel transition hover:border-emerald-500 sm:mt-16 sm:py-16">
+          <span className="upload-icon-wrap mb-4"><Upload className="upload-icon text-slate-500" size={34} /></span>
           <span className="text-lg font-semibold text-slate-900">Upload your PDF</span>
           <span className="mt-2 max-w-md text-sm text-slate-500">Choose a document to open the signing workspace.</span>
+          <span className="upload-hint mt-5">PDF only · processed in your workspace</span>
           <input className="hidden" type="file" accept="application/pdf" onChange={handlePdfUpload} />
         </label>
       ) : (
@@ -39,7 +40,7 @@ export function DocumentViewer({
               onPointerUp={() => {
                 setDragging(false);
               }}
-              className="pdf-page relative overflow-hidden rounded bg-white shadow-panel"
+              className="pdf-page pdf-sheet relative overflow-hidden rounded bg-white shadow-panel"
               style={{ width: page.width, minHeight: page.height }}
             >
               <canvas
@@ -66,7 +67,7 @@ export function DocumentViewer({
                     event.currentTarget.setPointerCapture(event.pointerId);
                     setDragging(true);
                   }}
-                  className="absolute cursor-move border-2 border-emerald-500 bg-emerald-50/40 p-1"
+                  className="signature-placement absolute cursor-move border-2 border-emerald-500 bg-emerald-50/40 p-1"
                   style={{
                     left: placement.x,
                     top: placement.y,

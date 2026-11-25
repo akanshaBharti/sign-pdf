@@ -13,9 +13,9 @@ export function Toolbar({
   onZoomChange
 }) {
   return (
-    <div className="flex flex-wrap items-center gap-3 border-b border-slate-200 bg-white px-4 py-2 sm:px-5">
+    <div className="command-toolbar flex flex-wrap items-center gap-3 border-b border-slate-200 bg-white px-4 py-2 sm:px-5">
       <div className="flex min-w-fit items-center gap-2 text-sm text-slate-600">
-        <span className="font-medium">Pages:</span>
+        <span className="toolbar-label font-medium">Pages:</span>
         <button
           type="button"
           onClick={() => onPageChange(activePage - 1)}
@@ -57,7 +57,7 @@ export function Toolbar({
           onChange={(event) => onSearchTermChange(event.target.value)}
           disabled={!pdfFile}
           placeholder={`Search in ${pdfFile?.name || "document"}`}
-          className="h-11 w-full rounded border border-slate-200 bg-white pl-11 pr-10 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 disabled:bg-slate-50"
+          className="document-search h-11 w-full rounded border border-slate-200 bg-white pl-11 pr-10 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 disabled:bg-slate-50"
         />
         <button
           type="button"
